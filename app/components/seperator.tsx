@@ -5,8 +5,8 @@ type SeporatorProps =
     & React.ComponentPropsWithoutRef<"hr">;
 
 const separatorStyles = {
-    horizontal: "h-px bg-zinc-100 shrink-0 border-0",
-    vertical: "w-px bg-zinc-100 shrink-0 border-0",
+    horizontal: "h-px bg-zinc-100 shrink-0 border-0 dark:bg-zinc-700",
+    vertical: "w-px bg-zinc-100 shrink-0 border-0 dark:bg-zinc-700",
 };
 
 export function Separator(

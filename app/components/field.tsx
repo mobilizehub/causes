@@ -41,7 +41,7 @@ export function Label(
             {...props}
             data-slot="label"
             className={clsx(
-                "text-sm/6 font-medium text-zinc-950",
+                "text-sm/6 font-medium text-zinc-950 dark:text-zinc-50",
             )}
         />
     );
@@ -54,7 +54,7 @@ export function ErrorMessage(
         <p
             {...props}
             className={clsx(
-                "text-sm/6 text-red-500",
+                "text-sm/6 text-red-500 dark:text-red-400",
                 props.className,
             )}
         />

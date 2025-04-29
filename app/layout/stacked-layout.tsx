@@ -48,10 +48,10 @@ const navigationItems = {
 
 export default function StackedLayout() {
     return (
-        <div className="min-h-screen h-full flex flex-col">
+        <div className="min-h-screen h-full flex flex-col bg:white dark:bg-zinc-950">
             <Banner />
 
-            <header className="bg-white border-b border-gray-900/10">
+            <header className="bg-white border-b border-zinc-900/10 dark:bg-zinc-900/10 dark:border-zinc-800">
                 <nav
                     aria-label="Global"
                     className="mx-auto flex max-w-5xl items-center justify-between py-4 px-6 lg:px-8 gap-12"
@@ -71,7 +71,7 @@ export default function StackedLayout() {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            className="h-8 w-auto text-black"
+                            className="h-8 w-auto text-black dark:text-white"
                         >
                             <title>Logo</title>
                             <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -86,7 +86,7 @@ export default function StackedLayout() {
                                     <Link
                                         key={item.name}
                                         href={item.href}
-                                        className="text-gray-600 hover:text-gray-800"
+                                        className="text-zinc-600 hover:text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-100"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -109,7 +109,7 @@ export default function StackedLayout() {
 
                         <Link
                             href="/signup"
-                            className="inline-block rounded-lg px-3 py-1 text-sm/6 font-semibold leading-6 text-white bg-zinc-900 hover:bg-zinc-700 ring-1 ring-zinc-600 hover:ring-zinc-800 shadow-sm transition-all duration-200 ease-in-out"
+                            className="inline-block rounded-lg px-3 py-1 text-sm/6 font-semibold leading-6 text-white bg-zinc-900 hover:bg-zinc-700 ring-1 ring-zinc-600 hover:ring-zinc-800 shadow-sm transition-all duration-200 ease-in-out dark:bg-zinc-100 dark:text-zinc-900 dark:ring-zinc-200 dark:hover:ring-zinc-300 dark:hover:bg-zinc-200"
                         >
                             Sign up
                         </Link>
@@ -121,10 +121,7 @@ export default function StackedLayout() {
                 <Outlet />
             </div>
 
-            <footer
-                id="menu"
-                className="border-t border-gray-900/10 bg-gray-50"
-            >
+            <footer className="border-t border-zinc-900/10 bg-zinc-50 dark:bg-zinc-950 dark:border-zinc-800">
                 <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10">
                     <Link
                         href="/"
@@ -141,13 +138,13 @@ export default function StackedLayout() {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            className="h-6 w-auto text-black"
+                            className="h-6 w-auto text-black dark:text-white"
                         >
                             <title>Logo</title>
                             <rect x="3" y="3" width="18" height="18" rx="2" />
                             <rect x="8" y="8" width="8" height="8" rx="1" />
                         </svg>
-                        <span className="text-lg font-semibold text-zinc-950">
+                        <span className="text-lg font-semibold text-zinc-950 dark:text-zinc-100">
                             Causes
                         </span>
                     </Link>
@@ -156,7 +153,7 @@ export default function StackedLayout() {
                         <div>
                             <h3
                                 slot="heading"
-                                className="text-base/7 font-semibold text-gray-900"
+                                className="text-base/7 font-semibold text-zinc-900 dark:text-zinc-100"
                             >
                                 Get involved
                             </h3>
@@ -165,7 +162,7 @@ export default function StackedLayout() {
                                     <li key={item.name}>
                                         <Link
                                             href={item.href}
-                                            className="text-sm/6 text-gray-600 hover:text-gray-900"
+                                            className="text-sm/6 text-zinc-600 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-100"
                                         >
                                             {item.name}
                                         </Link>
@@ -177,7 +174,7 @@ export default function StackedLayout() {
                         <div>
                             <h3
                                 slot="heading"
-                                className="text-base/7 font-semibold text-gray-900"
+                                className="text-base/7 font-semibold text-zinc-900 dark:text-zinc-100"
                             >
                                 Legal
                             </h3>
@@ -186,7 +183,7 @@ export default function StackedLayout() {
                                     <li key={item.name}>
                                         <Link
                                             href={item.href}
-                                            className="text-sm/6 text-gray-600 hover:text-gray-900"
+                                            className="text-sm/6 text-zinc-600 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-100"
                                         >
                                             {item.name}
                                         </Link>
@@ -202,7 +199,7 @@ export default function StackedLayout() {
                                 <a
                                     key={item.name}
                                     href={item.href}
-                                    className="text-gray-600 hover:text-gray-800"
+                                    className="text-zinc-600 hover:text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-100"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -214,7 +211,7 @@ export default function StackedLayout() {
                                 </a>
                             ))}
                         </div>
-                        <p className="mt-2 text-center text-sm/6 text-gray-600 md:order-1 md:mt-0 md:text-left">
+                        <p className="mt-2 text-center text-sm/6 text-zinc-600 md:order-1 md:mt-0 md:text-left dark:text-zinc-200">
                             &copy; {new Date().getFullYear()}{" "}
                             Causes, Inc. All rights reserved.
                         </p>
@@ -231,7 +228,7 @@ function Banner() {
     return (
         <div
             hidden={!isVisible}
-            className="flex items-center gap-x-6 bg-gray-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1"
+            className="flex items-center gap-x-6 bg-zinc-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 dark:bg-zinc-100/10"
         >
             <p className="text-sm/6 text-white">
                 <a
