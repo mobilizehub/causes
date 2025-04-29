@@ -1,12 +1,18 @@
 import {
+  data,
   isRouteErrorResponse,
   Links,
+  type LoaderFunctionArgs,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "react-router";
 
+import React from "react";
+import { getToast } from "remix-toast";
+import { toast as notify, Toaster } from "sonner";
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -19,9 +25,17 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href:
+      "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
 ];
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  // Extracts the toast from the request
+  const { toast, headers } = await getToast(request);
+  // Important to pass in the headers so the toast is cleared properly
+  return data({ toast }, { headers });
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster richColors position="top-right" />
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,6 +57,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const { toast } = useLoaderData<typeof loader>();
+  // Hook to show the toasts
+  React.useEffect(() => {
+    if (toast?.type === "error") {
+      notify.error(toast.message);
+    }
+    if (toast?.type === "success") {
+      notify.success(toast.message);
+    }
+  }, [toast]);
+
   return <Outlet />;
 }
 
@@ -52,10 +78,9 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+    details = error.status === 404
+      ? "The requested page could not be found."
+      : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
