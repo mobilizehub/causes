@@ -22,8 +22,8 @@ export function Heading({ className, level = 1, ...props }: HeadingProps) {
         <Element
             {...props}
             className={clsx(
-                className,
                 classes,
+                className,
             )}
         />
     );
